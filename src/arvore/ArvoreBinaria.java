@@ -9,6 +9,6 @@ package arvore;
  *
  * @author ADMIN
  */
-public class ArvoreBinaria {
+public class ArvoreBinaria<TIPO> {
     
 }
