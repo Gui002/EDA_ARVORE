@@ -16,9 +16,6 @@ public class Arvore {
      */
     public static void main(String[] args) {
             System.out.println("Guilherme Jacob Panguana");
-            System.out.println("Guilherme Jacob Panguana");
-            System.out.println("Guilherme Jacob Panguana");
-            System.out.println("Guilherme Jacob Panguana");
-    }
+   }
     
 }
