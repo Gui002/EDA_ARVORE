@@ -40,7 +40,7 @@ public class Arvore_Binaria {
         
         System.out.println("\nExiste 21? "+arvore.contem(21));
         System.out.println("\nExiste 20? "+arvore.contem(20));
-        
+        System.out.println("Tamanho da Arvore:"+arvore.tamanhoNo(arvore.getRoot()));
     }
     
 }

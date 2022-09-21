@@ -15,6 +15,9 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
         this.root = null;
     }
     
+    
+    
+    //# Primeiro Método
     public void insert(Object object){
         Elemento <Object> novoElemento = new Elemento <Object> (object);
         if(root == null){
@@ -49,37 +52,7 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
         return root;
     }
     
-    
-    public boolean contem(Object valor){
-        //Buscar o elemento na arvore
-        
-        Elemento <Object> atual = this.root;
-        Elemento <Object> pai = this.root;
-        boolean filho_esq = false;
-        
-        
-        if(root == null){ //Se a arvore estiver vazia, retorna false
-            return false;
-        }
-        while(atual.getValor()!=valor){ //enquanto não encontrou
-            pai = atual;
-            if(valor.compareTo(atual.getValor()) == -1){ //caminha para esquerda
-               atual = atual.getLeft(); 
-               filho_esq = true; // é filho a esquerda? Sim
-               
-            }else{ //caminha para direita
-                atual = atual.getRight();
-                filho_esq = false; // é filho a esquerda? Não
-            } 
-            if(atual == null)
-                return false; // encontrou uma folha -> sai;
-        }
-        return true;
-    }
-    
-    
-    
-    
+    //Métodos para imprimir em in-orem, pre-ordem e pos-ordem
     
     public void inOrder(Elemento <Object> atual){
        
@@ -109,4 +82,65 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
               System.out.println(atual.getValor());
           }     
      }
+    
+    
+    //Metodo para verificar se contem ou não o elemento
+    
+    public boolean contem(Object valor){
+        //Buscar o elemento na arvore
+        
+        Elemento <Object> atual = this.root;
+        Elemento <Object> pai = this.root;
+        boolean filho_esq = false;
+        
+        
+        if(root == null){ //Se a arvore estiver vazia, retorna false
+            return false;
+        }
+        while(atual.getValor()!=valor){ //enquanto não encontrou
+            pai = atual;
+            if(valor.compareTo(atual.getValor()) == -1){ //caminha para esquerda
+               atual = atual.getLeft(); 
+               filho_esq = true; // é filho a esquerda? Sim
+               
+            }else{ //caminha para direita
+                atual = atual.getRight();
+                filho_esq = false; // é filho a esquerda? Não
+            } 
+            if(atual == null)
+                return false; // encontrou uma folha -> sai;
+        }
+        return true;
+    }
+    
+    
+    public int tamanhoNo(Elemento <Object> atual){
+        if(atual == null || (atual.getLeft() == null && atual.getRight() == null)){
+            return 0; //Caso não exista a nenhum elemento na arvore, a altura será 0;
+        }else{
+            if (tamanhoNo(atual.getLeft())> tamanhoNo(atual.getRight()) ){
+                return (1 + tamanhoNo(atual.getLeft()));
+            }else{
+                return (1 + tamanhoNo(atual.getLeft()));
+            }
+        }
+    }
+    
+    
+      /*public int tamanhoArvore(){
+          
+        Elemento <Object> atual = root;
+        
+        if(atual == null || (atual.getLeft() == null && atual.getRight() == null)){
+            return 0; //Caso não exista a nenhum elemento na arvore, a altura será 0;
+        }else{
+            if (tamanhoArvore(atual.getLeft())> tamanhoArvore(atual.getRight()) ){
+                return (1 + tamanhoArvore(atual.getLeft()));
+            }else{
+                return (1 + tamanhoArvore(atual.getLeft()));
+            }
+        }
+    }*/
+    
+    
 }
