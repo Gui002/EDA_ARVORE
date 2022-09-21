@@ -25,10 +25,35 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
                 if(novoElemento.getValor().compareTo(atual.getValor()) == -1){ //-1 -> Menor
                     if(atual.getLeft()!=null){
                         atual = atual.getLeft();
+                    }else{
+                        atual.setLeft(novoElemento);
+                    }
+                }else{ //se for maior ou igual
+                    if(atual.getRight() != null){
+                        atual = atual.getRight();
+                        
+                    }else{
+                        atual.setRight(novoElemento);
                     }
                 }
             }
         
         }
+        
+        
     }
+    
+    public Elemento <Object> getRoot(){
+        return root;
+    }
+    
+    
+    public void inOrder(Elemento <Object> atual){
+       
+          if(atual!=null){
+              inOrder(atual.getLeft());
+              System.out.println(atual.getValor());
+              inOrder(atual.getRight());
+          }     
+     }
 }
