@@ -27,6 +27,7 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
                         atual = atual.getLeft();
                     }else{
                         atual.setLeft(novoElemento);
+                        break;
                     }
                 }else{ //se for maior ou igual
                     if(atual.getRight() != null){
@@ -34,6 +35,7 @@ public class Arvore <Object extends Comparable> {//Comparable serve para compara
                         
                     }else{
                         atual.setRight(novoElemento);
+                        break;
                     }
                 }
             }

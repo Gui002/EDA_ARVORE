@@ -8,7 +8,7 @@ package arvore;
  *
  * @author Gabriel
  */
-public class Arvore_Binaria<Object> {
+public class Arvore_Binaria {
 
     /**
      * @param args the command line arguments
@@ -18,6 +18,7 @@ public class Arvore_Binaria<Object> {
         arvore.insert(10);
         arvore.insert(5);
         arvore.inOrder(arvore.getRoot());
+        
     }
     
 }
