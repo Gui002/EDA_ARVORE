@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package arvore;
 
-/**
- *
- * @author ADMIN
- */
 public class ArvoreBinaria<TIPO extends Comparable> {
 
     private No<TIPO> raiz;
     private int numElementos;
+    private int folhas;
 
     ArvoreBinaria() {
         this.raiz = null;
         numElementos = 0;
+        this.folhas = 0;
     }
 
     public void adicionar(TIPO valor) {
@@ -51,30 +44,35 @@ public class ArvoreBinaria<TIPO extends Comparable> {
             }
         }
     }
-    
-    
+
     //Gambiara 
-    public void printInorder(){
+    public void printInorder() {
         imprimirEmOrdem(this.raiz);
     }
-    public void printPostorder(){
+
+    public void printPostorder() {
         imprimirPosOrdem(this.raiz);
     }
-    public void printPreorder(){
+
+    public void printPreorder() {
         imprimirPreOrdem(this.raiz);
     }
+
     //
     private void imprimirEmOrdem(No<TIPO> actual) {
         if (actual != null) {
             imprimirEmOrdem(actual.getFilhoEsquerdo());
-            System.out.println(actual.getValor());
+            System.out.print(actual.getValor() + " ");
             imprimirEmOrdem(actual.getFilhoDireito());
+            if (actual.getFilhoEsquerdo() == null && actual.getFilhoEsquerdo() == null) {
+                this.folhas++;
+            }
         }
     }
 
     private void imprimirPreOrdem(No<TIPO> actual) {
         if (actual != null) {
-            System.out.println(actual.getValor());
+            System.out.print(actual.getValor() + " ");
             imprimirPreOrdem(actual.getFilhoEsquerdo());
             imprimirPreOrdem(actual.getFilhoDireito());
         }
@@ -84,8 +82,76 @@ public class ArvoreBinaria<TIPO extends Comparable> {
         if (actual != null) {
             imprimirPosOrdem(actual.getFilhoEsquerdo());
             imprimirPosOrdem(actual.getFilhoDireito());
-            System.out.println(actual.getValor());
+            System.out.print(actual.getValor() + " ");
         }
+    }
+
+    //Metodo para verificar se contem ou não o elemento
+    public boolean contem(TIPO valor) {
+        //Buscar o elemento na arvore
+
+        No<TIPO> atual = this.raiz;
+        No<TIPO> pai = this.raiz;
+        boolean filho_esq = false;
+
+        if (raiz == null) { //Se a arvore estiver vazia, retorna false
+            return false;
+        }
+        while (atual.getValor() != valor) { //enquanto não encontrou
+            pai = atual;
+            if (valor.compareTo(atual.getValor()) == -1) { //caminha para esquerda
+                atual = atual.getFilhoEsquerdo();
+                filho_esq = true; // é filho a esquerda? Sim
+
+            } else { //caminha para direita
+                atual = atual.getFilhoDireito();
+                filho_esq = false; // é filho a esquerda? Não
+            }
+            if (atual == null) {
+                return false; // encontrou uma folha -> sai;
+            }
+        }
+        return true;
+    }
+
+    //Conta nos
+    public int contaNos(No<TIPO> no) {
+        if (no == null) {
+            return 0;
+        }
+        return 1 + contaNos(no.getFilhoDireito()) + contaNos(no.getFilhoEsquerdo());
+    }
+
+    //Conta folhas
+    public int contaFolhas(No<TIPO> no) {
+        if (no == null) {
+            return 0;
+        }
+        if (no.getFilhoDireito() == null && no.getFilhoEsquerdo() == null) {
+            return 1;
+        }
+        return contaFolhas(no.getFilhoDireito()) + contaFolhas(no.getFilhoEsquerdo());
+    }
+
+    public int nivel(TIPO valor) {
+        No<TIPO> actual = this.getRaiz();
+        int nivel = 0;
+
+        while (actual != null) {
+            if (actual.getValor().equals(valor)) {
+                return nivel;
+            }
+            if (valor.compareTo(actual.getValor()) == -1) {
+                actual = actual.getFilhoEsquerdo();
+            } else if (valor.compareTo(actual.getValor()) == 1) {
+                actual = actual.getFilhoDireito();
+            }
+            nivel++;
+        }
+        if (actual == null) {
+            return -1;
+        }
+        return nivel;
     }
 
     public No<TIPO> getRaiz() {
@@ -102,6 +168,14 @@ public class ArvoreBinaria<TIPO extends Comparable> {
 
     public void setNumElementos(int numElementos) {
         this.numElementos = numElementos;
+    }
+
+    public int getFolhas() {
+        return folhas;
+    }
+
+    public void setFolhas(int folhas) {
+        this.folhas = folhas;
     }
 
 }

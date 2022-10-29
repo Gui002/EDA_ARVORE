@@ -5,6 +5,9 @@
  */
 package arvore;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  *
  * @author ADMIN
@@ -14,18 +17,10 @@ public class Arvore {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-            System.out.println("Guilherme Jacob Panguana");
-            ArvoreBinaria<Integer> n = new ArvoreBinaria();
-            n.adicionar(10);
-            n.adicionar(8);
-            n.adicionar(15);
-            n.printInorder();
-            System.out.println("-----");
-            n.printPreorder();
-            System.out.println("-----");
-            n.printPreorder();
+    public static void main(String[] args) throws IOException {
+          new Menu();
         
+      
    }
     
 }
